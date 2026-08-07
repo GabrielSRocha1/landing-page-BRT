@@ -10,6 +10,17 @@
     content="Brutos Coin, HybridTruck, pedágio digital, mobilidade blockchain, Hybrid Truck, Verum Crypto, crédito mobilidade">
   <title>BRUTOS — Mobilidade Digital de Alta Performance</title>
   <link rel="icon" type="image/png" href="brt-favicon-lp.png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#050505">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="BRUTOS">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BRUTOS">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap"
@@ -142,6 +153,147 @@
     .nav-cta:hover {
       background: var(--gold-light);
       box-shadow: 0 0 24px rgba(201, 168, 76, 0.5);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-share {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      background: none;
+      border: 1px solid var(--border-strong);
+      border-radius: 2px;
+      color: var(--gold);
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .nav-share svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .nav-share:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--dark);
+      box-shadow: 0 0 24px rgba(201, 168, 76, 0.4);
+    }
+
+    .nav-lang {
+      position: relative;
+    }
+
+    .nav-lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 38px;
+      padding: 0 12px;
+      background: none;
+      border: 1px solid var(--border-strong);
+      border-radius: 2px;
+      color: var(--gold);
+      cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 2px;
+      transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .nav-lang-btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .nav-lang-btn:hover,
+    .nav-lang.open .nav-lang-btn {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--dark);
+      box-shadow: 0 0 24px rgba(201, 168, 76, 0.4);
+    }
+
+    .lang-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 150px;
+      list-style: none;
+      background: var(--dark-2);
+      border: 1px solid var(--border-strong);
+      border-radius: 2px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+      z-index: 120;
+    }
+
+    .nav-lang.open .lang-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .lang-option {
+      display: block;
+      width: 100%;
+      padding: 11px 16px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lang-option:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--white);
+    }
+
+    .lang-option.active {
+      color: var(--gold);
+    }
+
+    .share-toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translate(-50%, 16px);
+      z-index: 200;
+      background: var(--dark-2);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border-radius: 2px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .share-toast.visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
     }
 
     .hamburger {
@@ -433,7 +585,7 @@
       font-size: 11px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--text-dim);
+      color: #f2f2f2;
       margin-bottom: 6px;
     }
 
@@ -446,7 +598,7 @@
 
     .hero-stat-desc {
       font-size: 13px;
-      color: var(--text-dim);
+      color: #f2f2f2;
     }
 
     .hero-scroll {
@@ -1627,9 +1779,13 @@
     .footer-legal {
       font-size: 12px;
       color: var(--text-dim);
-      text-align: right;
-      max-width: 400px;
+      text-align: left;
+      flex: 1 0 100%;
+      max-width: none;
       line-height: 1.6;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 8px;
     }
 
     /* ── ANIMATIONS ── */
@@ -2135,6 +2291,47 @@
       font-weight: 500;
     }
 
+    .legal-content>p {
+      margin-bottom: 16px;
+    }
+
+    .legal-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .legal-list {
+      list-style: none;
+      margin: 0 0 16px 8px;
+    }
+
+    .legal-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 6px;
+    }
+
+    .legal-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 13px;
+      width: 8px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .legal-notice {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      font-size: 13px;
+      font-style: italic;
+    }
+
     @media (max-width: 600px) {
 
       .modal-header,
@@ -2165,11 +2362,42 @@
       <li><a href="#empresas">Empresas</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="https://verumcrypto.com" class="nav-cta">Acessar provedor parceiro</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-actions">
+      <a href="https://verumcrypto.com" class="nav-cta">Acessar provedor parceiro</a>
+      <div class="nav-lang" id="navLang">
+        <button class="nav-lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false"
+          aria-label="Selecionar idioma" title="Selecionar idioma">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18"></path>
+            <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"></path>
+          </svg>
+          <span class="nav-lang-code" id="langCode">PT</span>
+        </button>
+        <ul class="lang-menu" id="langMenu" role="menu">
+          <li><button type="button" role="menuitem" class="lang-option active" data-lang="pt">Português</button></li>
+          <li><button type="button" role="menuitem" class="lang-option" data-lang="en">English</button></li>
+          <li><button type="button" role="menuitem" class="lang-option" data-lang="es">Español</button></li>
+        </ul>
+      </div>
+      <button class="nav-share" id="shareBtn" type="button" aria-label="Compartilhar esta página"
+        title="Compartilhar esta página">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <line x1="8.6" y1="10.5" x2="15.4" y2="6.6"></line>
+          <line x1="8.6" y1="13.5" x2="15.4" y2="17.4"></line>
+        </svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+  <div class="share-toast" id="shareToast" role="status" aria-live="polite">Link copiado!</div>
 
   <!-- HERO -->
   <section class="hero" id="hero">
@@ -2807,6 +3035,58 @@
       navbar.classList.toggle('menu-open');
     });
 
+    // SHARE
+    const shareBtn = document.getElementById('shareBtn');
+    const shareToast = document.getElementById('shareToast');
+    let toastTimer;
+
+    function showToast(msg) {
+      shareToast.textContent = window.__t ? window.__t(msg) : msg;
+      shareToast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => shareToast.classList.remove('visible'), 2600);
+    }
+
+    function copyLink(url) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(url);
+      }
+      const ta = document.createElement('textarea');
+      ta.value = url;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok ? Promise.resolve() : Promise.reject(new Error('copy failed'));
+    }
+
+    shareBtn.addEventListener('click', async () => {
+      const url = window.location.href;
+      const shareData = {
+        title: 'BRUTOS — by Hybrid Truck',
+        text: 'Brutos: token utilitário de crédito de mobilidade sobre infraestrutura blockchain.',
+        url
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (err) {
+          if (err.name === 'AbortError') return; // usuário cancelou
+        }
+      }
+
+      try {
+        await copyLink(url);
+        showToast('Link copiado!');
+      } catch (err) {
+        showToast('Não foi possível copiar o link');
+      }
+    });
+
     // SMOOTH CLOSE
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', () => navbar.classList.remove('menu-open'));
@@ -2860,31 +3140,39 @@
     // CTA
 
     // TERMS MODAL logic
-    const openTerms = document.getElementById('openTerms');
-    const closeTerms = document.getElementById('closeTerms');
-    const termsModal = document.getElementById('termsModal');
+    // O modal fica depois deste <script> no documento, portanto só existe
+    // no DOM apos o parse completo — daí o DOMContentLoaded.
+    document.addEventListener('DOMContentLoaded', () => {
+      const openTerms = document.getElementById('openTerms');
+      const closeTerms = document.getElementById('closeTerms');
+      const termsModal = document.getElementById('termsModal');
 
-    if (openTerms && termsModal) {
+      if (!openTerms || !termsModal) return;
+
+      const closeModal = () => {
+        termsModal.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+
       openTerms.addEventListener('click', (e) => {
         e.preventDefault();
         termsModal.classList.add('active');
         document.body.style.overflow = 'hidden';
       });
-    }
 
-    if (closeTerms && termsModal) {
-      closeTerms.addEventListener('click', () => {
-        termsModal.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    }
-
-    // Close on overlay click
-    termsModal.addEventListener('click', (e) => {
-      if (e.target === termsModal) {
-        termsModal.classList.remove('active');
-        document.body.style.overflow = '';
+      if (closeTerms) {
+        closeTerms.addEventListener('click', closeModal);
       }
+
+      // Close on overlay click
+      termsModal.addEventListener('click', (e) => {
+        if (e.target === termsModal) closeModal();
+      });
+
+      // Close on ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && termsModal.classList.contains('active')) closeModal();
+      });
     });
 
   </script>
@@ -2894,59 +3182,600 @@
     <div class="modal-container">
       <button class="modal-close-btn" id="closeTerms" aria-label="Fechar">✕</button>
       <div class="modal-header">
-        <h3 class="modal-title">GOVERNANCE, PRIVACY AND COMPLIANCE ANNEX – HYBRIDY TRUCK ECOSYSTEM</h3>
+        <h3 class="modal-title">AVISO LEGAL, PRIVACIDADE E CÓDIGO DE CONDUTA – BRUTOS COIN (BRT)</h3>
       </div>
       <div class="modal-body">
         <div class="legal-content">
+          <p>Este documento estabelece as diretrizes jurídicas e operacionais para o ativo Brutos Coin (BRT), integrado
+            ao ecossistema de mobilidade e em conformidade com as leis de proteção de dados da América Latina (LGPD).</p>
+          <p class="legal-updated">Última Atualização: Agosto de 2026</p>
+
           <div class="legal-section">
-            <h4>1. LEGAL NATURE AND UTILITY (UTILITY TOKEN)</h4>
-            <p>The asset <span class="legal-highlight">Brutos Coin (BRT)</span> is classified strictly as an
-              Infrastructure Utility Token. It serves as the unit of account and incentive within the decentralized
-              physical infrastructure network (DePIN) of Hybridy Truck.</p>
-            <p><span class="legal-highlight">No Expectation of Passive Profit:</span> The acquisition of BRT does not
-              guarantee dividends, corporate participation, or fixed income. Its valuation is strictly linked to the
-              adoption and utility of the logistics ecosystem.</p>
+            <h4>1. Aviso Legal e Natureza do Ativo (Disclaimer)</h4>
+            <p><span class="legal-highlight">1.1. Token de Utilidade e Mobilidade</span><br>
+              A Brutos Coin (BRT) é um ativo digital operando na rede blockchain Solana. O BRT é exclusivamente um
+              crédito de uso para serviços de mobilidade. Não constitui, em nenhuma circunstância ou jurisdição, um
+              valor mobiliário, contrato de investimento, instrumento de captação de recursos ou promessa de lucros. Sua
+              posse não confere direitos de participação societária ou financeira no ecossistema.</p>
+            <p><span class="legal-highlight">1.2. Alerta de Risco e Volatilidade</span><br>
+              O usuário declara estar ciente de que ativos digitais possuem volatilidade. A equipe do projeto não
+              oferece garantias de valorização ou recompra obrigatória. O valor do BRT está intrinsecamente ligado à sua
+              utilidade dentro do ecossistema de mobilidade.</p>
+            <p><span class="legal-highlight">1.3. Software e Custódia</span><br>
+              Para a gestão de seus créditos BRT, recomendamos o uso da Verum Wallet.<br>
+              <span class="legal-highlight">Nota Técnica:</span> A Verum Wallet é um software não custodial que atua
+              como interface técnica. O usuário é o único responsável pela segurança de suas chaves privadas. Não nos
+              responsabilizamos por perda de acesso ou erros em transações manuais fora do ecossistema automatizado.</p>
           </div>
 
           <div class="legal-section">
-            <h4>2. PRIVACY AND TELEMETRY (LAW 81/2019 AND GDPR)</h4>
-            <p>The operation of Hybridy Truck modules involves the collection of telemetry data (fuel consumption,
-              geolocation, engine performance).</p>
-            <p><span class="legal-highlight">Pseudonymization:</span> All fleet data is technically processed so that
-              the identity of the driver or owner is not directly identifiable on the public network (Blockchain), in
-              compliance with Law 81/2019 of Panama.</p>
-            <p><span class="legal-highlight">Purpose:</span> Data is used exclusively for the optimization of the DePIN
-              network and validation of the Proof of Efficiency.</p>
+            <h4>2. Funcionalidades e Transparência</h4>
+            <p><span class="legal-highlight">2.1. Uso Automatizado (Ecossistema Hybrid Truck)</span><br>
+              Os créditos BRT são projetados para utilização automatizada pelo ecossistema Hybrid Truck. A tecnologia
+              permite que o uso ocorra sem a necessidade de ação manual do motorista em cada passagem ou serviço,
+              eliminando filas e fricções operacionais.</p>
+            <p><span class="legal-highlight">2.2. Transparência On-Chain</span><br>
+              Toda a movimentação, emissão e utilização de créditos BRT são registradas de forma pública e imutável na
+              blockchain Solana. Isso garante transparência total e permite auditoria independente por qualquer parte
+              interessada a qualquer momento.</p>
+            <p><span class="legal-highlight">2.3. Expansão Progressiva</span><br>
+              O ecossistema BRT está em constante evolução. Conforme a rede expande, o crédito Brutos passará a ser
+              aceito progressivamente em outros serviços de mobilidade, incluindo:</p>
+            <ul class="legal-list">
+              <li>Estacionamentos e pedágios;</li>
+              <li>Abastecimento de combustível;</li>
+              <li>Gestão de frotas e serviços em Cidades Inteligentes (Smart Cities).</li>
+            </ul>
           </div>
 
           <div class="legal-section">
-            <h4>3. REAL WORLD ASSETS (RWA) AND RISKS</h4>
-            <p>The Hybridy Truck ecosystem integrates physical hardware with digital assets.</p>
-            <p><span class="legal-highlight">Operational Risk:</span> The user acknowledges that failures in mechanical
-              components or variations in diesel prices are inherent risks in the transport sector and may indirectly
-              influence the demand for the ecosystem.</p>
-            <p><span class="legal-highlight">Secondary Market:</span> Verum Wallet Freeport does not maintain, control,
-              or guarantee liquidity on third-party exchanges. Price fluctuation is determined exclusively by market
-              supply and demand.</p>
+            <h4>3. Política de Privacidade e Cookies (LGPD)</h4>
+            <p><span class="legal-highlight">3.1. Dados na Blockchain</span><br>
+              O usuário reconhece que o endereço de sua carteira e o histórico de uso dos créditos são dados públicos e
+              permanentes na rede Solana, necessários para a segurança e auditoria do sistema.</p>
+            <p><span class="legal-highlight">3.2. Tratamento de Dados Pessoais</span><br>
+              Coletamos dados mínimos (como identificação de frota ou e-mail de suporte) estritamente para a prestação
+              dos serviços de mobilidade e suporte técnico.</p>
+            <p><span class="legal-highlight">Segurança:</span> Utilizamos criptografia e medidas técnicas rigorosas para
+              proteger dados coletados fora da blockchain contra acessos não autorizados.</p>
+            <p><span class="legal-highlight">Direitos:</span> Em conformidade com a LGPD, o usuário pode solicitar
+              acesso ou correção de seus dados pessoais armazenados em nossos servidores centrais.</p>
           </div>
 
           <div class="legal-section">
-            <h4>4. INTELLECTUAL PROPERTY AND MANAGEMENT</h4>
-            <p>All intellectual property regarding the hybrid module design, integration algorithms, and the BRT token
-              code belongs to <span class="legal-highlight">Verum Wallet Freeport (Panama)</span>. Reverse engineering
-              or commercial use of trademarks without express authorization is prohibited.</p>
+            <h4>4. Código de Conduta</h4>
+            <p>A comunidade BRT é mundial e real, focada na eficiência do setor de transporte e mobilidade. Espera-se
+              que todos os membros, motoristas e parceiros mantenham um ambiente de respeito, colaboração e integridade,
+              visando o crescimento sustentável do ecossistema do ativo BRT e a inovação na infraestrutura global.</p>
           </div>
 
-          <div class="legal-section">
-            <h4>5. JURISDICTION AND ARBITRATION</h4>
-            <p>This document and any commercial relationship derived from it are governed by the laws of the Republic of
-              Panama. Any disputes must be resolved through arbitration in <span class="legal-highlight">Panama
-                City</span>.</p>
-          </div>
+          <p class="legal-notice"><span class="legal-highlight">AVISO:</span> Este documento é uma prévia informativa e
+            pode ser revisado sem aviso prévio periodicamente de acordo com as atualizações tecnológicas do ecossistema
+            Hybrid Truck e mudanças regulatórias.</p>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+  // ── I18N (PT / EN / ES) ──
+  (function () {
+    const DICT = {
+      en: {
+        'BRUTOS — Mobilidade Digital de Alta Performance': 'BRUTOS — High Performance Digital Mobility',
+        'Solução': 'Solution',
+        'Tecnologia': 'Technology',
+        'Empresas': 'Companies',
+        'Acessar provedor parceiro': 'Access partner provider',
+        'Link copiado!': 'Link copied!',
+        'Não foi possível copiar o link': 'Could not copy the link',
+        'Compartilhar esta página': 'Share this page',
+        'Selecionar idioma': 'Select language',
+        'Fechar': 'Close',
+        'Ecossistema Ativo — Mobilidade Digital': 'Active Ecosystem — Digital Mobility',
+        'O FUTURO': 'THE FUTURE',
+        'DO': 'OF',
+        'PEDÁGIO': 'TOLLS',
+        'É': 'IS',
+        'Brutos é o crédito digital de mobilidade que elimina filas, reduz intermediários e conecta motoristas e frotas a uma infraestrutura de pagamento automático em tempo real.': 'Brutos is the digital mobility credit that eliminates queues, reduces intermediaries and connects drivers and fleets to a real-time automatic payment infrastructure.',
+        'Como Funciona': 'How It Works',
+        'Tecnologia Base': 'Core Technology',
+        'Blockchain de alta velocidade': 'High-speed blockchain',
+        'Liquidação': 'Settlement',
+        'Pagamento em tempo real': 'Real-time payment',
+        'Ecossistema para negociação': 'Trading ecosystem',
+        'Infraestrutura blockchain Latam': 'Latam blockchain infrastructure',
+        'Descer': 'Scroll',
+        'Contexto': 'Context',
+        'O': 'THE',
+        'PROBLEMA': 'PROBLEM',
+        'QUE RESOLVEMOS': 'WE SOLVE',
+        'Filas e Paradas Obrigatórias': 'Queues and Mandatory Stops',
+        'Cada parada em pedágio representa tempo perdido, combustível desperdiçado e custo operacional desnecessário para motoristas e frotas.': 'Every toll stop means lost time, wasted fuel and unnecessary operating cost for drivers and fleets.',
+        'Taxas de Intermediários': 'Intermediary Fees',
+        'Múltiplas camadas de processamento financeiro encarecem cada transação de mobilidade sem agregar valor ao usuário final.': 'Multiple layers of financial processing make every mobility transaction more expensive without adding value to the end user.',
+        'Ecossistemas Desintegrados': 'Disconnected Ecosystems',
+        'Pedágios, estacionamentos e abastecimento operam em plataformas isoladas, sem comunicação ou eficiência entre elas.': 'Tolls, parking and fueling run on isolated platforms, with no communication or efficiency between them.',
+        'Baixa Visibilidade Operacional': 'Low Operational Visibility',
+        'Gestores de frota não têm acesso a dados consolidados de mobilidade em tempo real para tomada de decisão.': 'Fleet managers have no access to consolidated real-time mobility data for decision making.',
+        'Custo Operacional Atual': 'Current Operating Cost',
+        'Tempo em filas / mês': 'Time in queues / month',
+        '+18 horas/veículo': '+18 hours/vehicle',
+        'Taxa de intermediários': 'Intermediary fee',
+        '3.5% por transação': '3.5% per transaction',
+        'Processos manuais': 'Manual processes',
+        'Alto risco de erro': 'High error risk',
+        'Integração de dados': 'Data integration',
+        'Quase zero': 'Almost zero',
+        'A': 'THE',
+        'SOLUÇÃO': 'SOLUTION',
+        'Ative sua Verum Wallet': 'Activate your Verum Wallet',
+        'Crie sua carteira não custodial — suas chaves, seu controle — e adicione créditos Brutos em segundos, direto pelo aplicativo.': 'Create your non-custodial wallet — your keys, your control — and add Brutos credits in seconds, straight from the app.',
+        'Instale o Hybrid Truck': 'Install the Hybrid Truck',
+        'O dispositivo inteligente é conectado ao veículo e realiza a identificação automática em pontos de cobrança.': 'The smart device is connected to the vehicle and performs automatic identification at charging points.',
+        'Passe sem Parar': 'Drive Through Without Stopping',
+        'Ao cruzar o ponto de pedágio, o Hybrid Truck comunica o evento e o débito é executado automaticamente.': 'When crossing the toll point, the Hybrid Truck reports the event and the debit is executed automatically.',
+        'Confirmação On-Chain': 'On-Chain Confirmation',
+        'Cada transação é registrada na blockchain Solana, garantindo rastreabilidade total e auditabilidade permanente.': 'Every transaction is recorded on the Solana blockchain, ensuring full traceability and permanent auditability.',
+        'Tecnologia Central': 'Core Technology',
+        '"Um dispositivo inteligente que atua como ponte entre eventos do mundo real e a infraestrutura digital de liquidação."': '"A smart device that acts as a bridge between real-world events and the digital settlement infrastructure."',
+        'Identificação': 'Identification',
+        'Automática por RF': 'Automatic via RF',
+        'Latência': 'Latency',
+        'Registro': 'Record',
+        'Híbrida (off + on)': 'Hybrid (off + on)',
+        'PASSA PELO PEDÁGIO.': 'DRIVE THROUGH THE TOLL.',
+        'SEM PARAR.': 'NO STOPPING.',
+        'SEM FILA.': 'NO QUEUES.',
+        'O ecossistema Brutos + Hybrid Truck identifica o veículo automaticamente e executa o débito em milissegundos. O motorista não precisa parar, abrir a janela ou acionar nenhum botão.': 'The Brutos + Hybrid Truck ecosystem identifies the vehicle automatically and executes the debit in milliseconds. The driver does not have to stop, open the window or press any button.',
+        'Tempo de liquidação': 'Settlement time',
+        'Automático': 'Automatic',
+        'Registro imutável': 'Immutable record',
+        'Infraestrutura': 'Infrastructure',
+        'DIFERENCIAL': 'OUR TECHNICAL',
+        'TECNOLÓGICO': 'EDGE',
+        'Velocidade de processamento superior a 65.000 transações por segundo. Custo de transação inferior a $0.001 — viável para micropagamentos de mobilidade em escala.': 'Processing speed above 65,000 transactions per second. Transaction cost below $0.001 — viable for mobility micropayments at scale.',
+        'Liquidação Híbrida': 'Hybrid Settlement',
+        'Processamento off-chain para velocidade máxima na experiência do usuário, com confirmação posterior on-chain para imutabilidade e auditoria permanente.': 'Off-chain processing for maximum speed in the user experience, with later on-chain confirmation for immutability and permanent auditing.',
+        'Integração nativa entre o dispositivo físico Hybrid Truck e a infraestrutura digital — eliminando a necessidade de intervenção humana em cada transação.': 'Native integration between the physical Hybrid Truck device and the digital infrastructure — removing the need for human intervention in every transaction.',
+        'Auditabilidade Total': 'Full Auditability',
+        'Cada evento de passagem, débito e confirmação é registrado de forma permanente e verificável publicamente na blockchain, criando trilha de auditoria imutável.': 'Every passage, debit and confirmation event is permanently recorded and publicly verifiable on the blockchain, creating an immutable audit trail.',
+        'Arquitetura Escalável': 'Scalable Architecture',
+        'Ecossistema projetado para crescer de centenas para milhões de transações diárias sem alteração de arquitetura, aproveitando a infraestrutura do ecossistema Verum.': 'Ecosystem designed to grow from hundreds to millions of daily transactions with no architecture change, leveraging the Verum ecosystem infrastructure.',
+        'Equilíbrio Automático': 'Automatic Balance',
+        'Mecanismo programado de retirada de circulação proporcional ao volume de uso mantém a eficiência econômica do ecossistema de créditos ao longo do tempo.': 'A programmed mechanism that removes credits from circulation in proportion to usage volume keeps the economic efficiency of the credit ecosystem over time.',
+        'Estrutura': 'Structure',
+        'ECOSSISTEMA': 'INTEGRATED',
+        'INTEGRADO': 'ECOSYSTEM',
+        'Brutos não opera de forma isolada. É parte de uma infraestrutura completa que conecta hardware, carteira não custodial, blockchain e operação regional.': 'Brutos does not operate in isolation. It is part of a complete infrastructure connecting hardware, non-custodial wallet, blockchain and regional operation.',
+        'Infraestrutura Blockchain': 'Blockchain Infrastructure',
+        'Interface não custodial': 'Non-custodial interface',
+        'Crédito de Mobilidade': 'Mobility Credit',
+        'Operação Brasil': 'Brazil Operation',
+        'Crédito Digital': 'Digital Credit',
+        'BRUTOS COMO': 'BRUTOS AS',
+        'CRÉDITO': 'CREDIT',
+        'DE USO': 'FOR USE',
+        'Operação e Liquidação': 'Operation and Settlement',
+        'Conversão em moeda local para liquidação dos pedágios e serviços de mobilidade': 'Conversion into local currency for settling tolls and mobility services',
+        'Sustentabilidade do Ecossistema': 'Ecosystem Sustainability',
+        'Reserva de liquidez destinada a sustentar o funcionamento contínuo do ecossistema': 'Liquidity reserve intended to sustain the continuous operation of the ecosystem',
+        'Equilíbrio Econômico': 'Economic Balance',
+        'Retirada programada de circulação proporcional ao volume de transações': 'Programmed removal from circulation in proportion to transaction volume',
+        'Token de Utilidade Pura': 'Pure Utility Token',
+        'Brutos é exclusivamente um crédito de uso para serviços de mobilidade. Não representa participação, direito financeiro ou instrumento de captação.': 'Brutos is exclusively a usage credit for mobility services. It does not represent equity, financial rights or any fundraising instrument.',
+        'Uso Automatizado': 'Automated Use',
+        'Os créditos são utilizados automaticamente pelo ecossistema Hybrid Truck, sem ação manual do motorista em cada passagem. Sem filas, sem fricção.': 'Credits are used automatically by the Hybrid Truck ecosystem, with no manual action from the driver at each passage. No queues, no friction.',
+        'Transparência On-Chain': 'On-Chain Transparency',
+        'Toda movimentação de créditos é registrada na blockchain Solana, permitindo auditoria independente por qualquer parte interessada.': 'All credit movement is recorded on the Solana blockchain, allowing independent auditing by any interested party.',
+        'Expansão Progressiva': 'Progressive Expansion',
+        'O mesmo crédito Brutos, conforme o ecossistema expande, passa a ser aceito em estacionamentos, combustível, frotas e cidades inteligentes.': 'The same Brutos credit, as the ecosystem expands, becomes accepted at parking lots, fuel stations, fleets and smart cities.',
+        'Calculadora': 'Calculator',
+        'SIMULE SUA': 'SIMULATE YOUR',
+        'EFICIÊNCIA': 'EFFICIENCY',
+        'Simulador de Tempo Recuperado': 'Recovered Time Simulator',
+        'Passagens por semana': 'Passages per week',
+        'passagens': 'passages',
+        'Tempo médio em fila (min)': 'Average queue time (min)',
+        'minutos': 'minutes',
+        'Horas recuperadas / mês': 'Hours recovered / month',
+        'Dias produtivos ganhos / ano': 'Productive days gained / year',
+        'Passagens automatizadas / ano': 'Automated passages / year',
+        'Expansão': 'Expansion',
+        'ROADMAP DE': 'ROADMAP TO',
+        'CRESCIMENTO': 'GROWTH',
+        'Fase 1': 'Phase 1',
+        'Pedágios': 'Tolls',
+        'Pagamento automático em praças de pedágio': 'Automatic payment at toll plazas',
+        'Em operação': 'Live',
+        'Fase 2': 'Phase 2',
+        'Estacionamentos': 'Parking',
+        'Integração com redes de estacionamento': 'Integration with parking networks',
+        'Em desenvolvimento': 'In development',
+        'Fase 3': 'Phase 3',
+        'Combustível': 'Fuel',
+        'Pagamento em postos de abastecimento': 'Payment at fuel stations',
+        'Próxima fase': 'Next phase',
+        'Fase 4': 'Phase 4',
+        'Frotas': 'Fleets',
+        'Gestão centralizada de mobilidade corporativa': 'Centralized corporate mobility management',
+        'Planejado': 'Planned',
+        'Fase 5': 'Phase 5',
+        'Integração com infraestrutura de cidades inteligentes': 'Integration with smart city infrastructure',
+        'Visão': 'Vision',
+        'Credibilidade': 'Credibility',
+        'AS EMPRESAS': 'THE COMPANIES',
+        'ENVOLVIDAS': 'INVOLVED',
+        'Proprietária do Projeto': 'Project Owner',
+        'Empresa responsável pela estratégia, propriedade intelectual e direcionamento do ecossistema Brutos. Define os parâmetros de expansão, parcerias e integração com o mercado de mobilidade e logística.': 'Company responsible for the strategy, intellectual property and direction of the Brutos ecosystem. It defines expansion parameters, partnerships and integration with the mobility and logistics market.',
+        'Infraestrutura Tecnológica': 'Technology Infrastructure',
+        'Desenvolvedora da infraestrutura blockchain, da Verum Wallet — software de interface não custodial — e dos protocolos de liquidação on-chain. A custódia dos ativos permanece sempre com o usuário, detentor exclusivo de suas chaves privadas. Responsável pela auditabilidade e escalabilidade de toda a camada digital do ecossistema.': 'Developer of the blockchain infrastructure, of the Verum Wallet — non-custodial interface software — and of the on-chain settlement protocols. Asset custody always remains with the user, sole holder of their private keys. Responsible for the auditability and scalability of the entire digital layer of the ecosystem.',
+        'Empresa brasileira parceira responsável pela operação, distribuição e suporte ao usuário no mercado nacional. Garante aderência à regulamentação local e capilaridade operacional em território brasileiro.': 'Brazilian partner company responsible for operation, distribution and user support in the domestic market. It ensures adherence to local regulation and operational reach across Brazilian territory.',
+        'Perguntas Frequentes': 'Frequently Asked Questions',
+        'O Brutos é um investimento ou produto financeiro?': 'Is Brutos an investment or a financial product?',
+        'Não. Brutos é exclusivamente um crédito de utilidade para pagamento de serviços de mobilidade. Não representa participação societária, instrumento financeiro, direito a rendimentos ou qualquer forma de investimento regulamentado.': 'No. Brutos is exclusively a utility credit for paying mobility services. It does not represent equity, a financial instrument, a right to earnings or any form of regulated investment.',
+        'Como funciona o Hybrid Truck na prática?': 'How does the Hybrid Truck work in practice?',
+        'O Hybrid Truck é um dispositivo instalado no veículo que realiza identificação automática ao passar por pontos de cobrança. Ao detectar o evento, e mediante autorização prévia concedida pelo usuário, o débito do crédito Brutos é assinado diretamente a partir da carteira não custodial do próprio motorista, sem necessidade de ação manual a cada passagem. As chaves privadas nunca saem do controle do usuário.': 'The Hybrid Truck is a device installed in the vehicle that performs automatic identification when passing charging points. On detecting the event, and under prior authorization granted by the user, the Brutos credit debit is signed directly from the driver\'s own non-custodial wallet, with no manual action needed at each passage. Private keys never leave the user\'s control.',
+        'Onde posso usar os créditos Brutos atualmente?': 'Where can I use Brutos credits today?',
+        'Na fase atual, os créditos Brutos são utilizados para pagamento de pedágios nos pontos integrados ao ecossistema. A expansão para estacionamentos, combustível e logística de frotas está em desenvolvimento conforme o roadmap do projeto.': 'In the current phase, Brutos credits are used to pay tolls at points integrated into the ecosystem. Expansion to parking, fuel and fleet logistics is in development according to the project roadmap.',
+        'Como funciona a segurança das transações?': 'How does transaction security work?',
+        'A Verum fornece tecnologia avançada de segurança em software, e cada transação é registrada na blockchain Solana — uma das redes mais auditáveis do mundo, com imutabilidade permanente no registro on-chain. Como a carteira é não custodial, você é o único detentor das suas chaves privadas e o responsável pela guarda delas.': 'Verum provides advanced software security technology, and every transaction is recorded on the Solana blockchain — one of the most auditable networks in the world, with permanent immutability in the on-chain record. Because the wallet is non-custodial, you are the sole holder of your private keys and responsible for safeguarding them.',
+        'A Verum Wallet guarda minhas criptomoedas?': 'Does Verum Wallet hold my cryptocurrencies?',
+        'Não. A Verum Wallet é um software de interface não custodial: ela apenas permite que você visualize seus ativos e assine transações na blockchain. As chaves privadas e a custódia dos créditos permanecem exclusivamente com o usuário. Nenhuma das empresas do ecossistema mantém, controla ou tem acesso aos seus fundos.': 'No. Verum Wallet is non-custodial interface software: it only lets you view your assets and sign blockchain transactions. Private keys and credit custody remain exclusively with the user. None of the ecosystem companies holds, controls or has access to your funds.',
+        'Motoristas autônomos podem usar o ecossistema?': 'Can independent drivers use the ecosystem?',
+        'Sim. O ecossistema foi desenhado para atender tanto motoristas individuais quanto gestores de grandes frotas. A Verum Wallet e o Hybrid Truck funcionam de forma independente, com escalabilidade para múltiplos veículos na mesma conta.': 'Yes. The ecosystem was designed to serve both individual drivers and managers of large fleets. Verum Wallet and Hybrid Truck work independently, scaling to multiple vehicles under the same account.',
+        'Qual é a responsabilidade de cada empresa no projeto?': 'What is each company responsible for in the project?',
+        'Hybrid Truck é a proprietária e definidora estratégica do projeto. Verum Crypto desenvolveu e mantém toda a infraestrutura blockchain e digital. A empresa Evolução conduz a operação no mercado brasileiro, incluindo relacionamento com usuários e parceiros locais.': 'Hybrid Truck is the owner and strategic lead of the project. Verum Crypto developed and maintains the entire blockchain and digital infrastructure. The company Evolução runs the operation in the Brazilian market, including relationships with users and local partners.',
+        'PRONTO PARA': 'READY TO',
+        'CIRCULAR': 'KEEP MOVING',
+        'SEM PARAR?': 'NONSTOP?',
+        'Termos de uso e Privacidade': 'Terms of Use and Privacy',
+        'Brutos é um token utilitário de crédito de mobilidade. Este site não constitui oferta de valores mobiliários, promessa de rendimento ou instrumento de captação financeira regulamentada. A Verum Wallet é uma provedora de tecnologia (software de interface não custodial): você é o único detentor das suas chaves privadas, e a custódia dos ativos é de sua exclusiva responsabilidade. As operações de compra e venda de criptoativos são processadas exclusivamente por provedores parceiros independentes e regulados, responsáveis pelos respectivos procedimentos de KYC/AML e pela conversão entre moeda fiduciária e criptoativos; a Verum não processa, retém ou liquida moedas fiduciárias. A Verum Wallet não realiza recomendação de investimentos nem garante o desempenho de qualquer ativo digital — o mercado de criptoativos é altamente volátil. Operação conduzida pela Evolução no Brasil. © 2025 Hybrid Truck. Todos os direitos reservados.': 'Brutos is a utility token for mobility credit. This site does not constitute an offer of securities, a promise of returns or a regulated fundraising instrument. Verum Wallet is a technology provider (non-custodial interface software): you are the sole holder of your private keys, and asset custody is your exclusive responsibility. Purchases and sales of crypto assets are processed exclusively by independent, regulated partner providers, responsible for the respective KYC/AML procedures and for conversion between fiat currency and crypto assets; Verum does not process, hold or settle fiat currencies. Verum Wallet does not make investment recommendations nor guarantee the performance of any digital asset — the crypto asset market is highly volatile. Operation conducted by Evolução in Brazil. © 2025 Hybrid Truck. All rights reserved.',
+        'AVISO LEGAL, PRIVACIDADE E CÓDIGO DE CONDUTA – BRUTOS COIN (BRT)': 'LEGAL NOTICE, PRIVACY AND CODE OF CONDUCT – BRUTOS COIN (BRT)',
+        'Este documento estabelece as diretrizes jurídicas e operacionais para o ativo Brutos Coin (BRT), integrado ao ecossistema de mobilidade e em conformidade com as leis de proteção de dados da América Latina (LGPD).': 'This document sets out the legal and operational guidelines for the Brutos Coin (BRT) asset, integrated into the mobility ecosystem and in compliance with Latin American data protection laws (LGPD).',
+        'Última Atualização: Agosto de 2026': 'Last Updated: August 2026',
+        '1. Aviso Legal e Natureza do Ativo (Disclaimer)': '1. Legal Notice and Nature of the Asset (Disclaimer)',
+        '1.1. Token de Utilidade e Mobilidade': '1.1. Utility and Mobility Token',
+        'A Brutos Coin (BRT) é um ativo digital operando na rede blockchain Solana. O BRT é exclusivamente um crédito de uso para serviços de mobilidade. Não constitui, em nenhuma circunstância ou jurisdição, um valor mobiliário, contrato de investimento, instrumento de captação de recursos ou promessa de lucros. Sua posse não confere direitos de participação societária ou financeira no ecossistema.': 'Brutos Coin (BRT) is a digital asset operating on the Solana blockchain network. BRT is exclusively a usage credit for mobility services. It does not constitute, under any circumstance or jurisdiction, a security, an investment contract, a fundraising instrument or a promise of profit. Holding it does not grant corporate or financial participation rights in the ecosystem.',
+        '1.2. Alerta de Risco e Volatilidade': '1.2. Risk and Volatility Warning',
+        'O usuário declara estar ciente de que ativos digitais possuem volatilidade. A equipe do projeto não oferece garantias de valorização ou recompra obrigatória. O valor do BRT está intrinsecamente ligado à sua utilidade dentro do ecossistema de mobilidade.': 'The user declares awareness that digital assets are volatile. The project team offers no guarantee of appreciation or mandatory buyback. The value of BRT is intrinsically tied to its utility within the mobility ecosystem.',
+        '1.3. Software e Custódia': '1.3. Software and Custody',
+        'Para a gestão de seus créditos BRT, recomendamos o uso da Verum Wallet.': 'For managing your BRT credits, we recommend using Verum Wallet.',
+        'Nota Técnica:': 'Technical Note:',
+        'A Verum Wallet é um software não custodial que atua como interface técnica. O usuário é o único responsável pela segurança de suas chaves privadas. Não nos responsabilizamos por perda de acesso ou erros em transações manuais fora do ecossistema automatizado.': 'Verum Wallet is non-custodial software acting as a technical interface. The user is solely responsible for the security of their private keys. We are not liable for loss of access or errors in manual transactions outside the automated ecosystem.',
+        '2. Funcionalidades e Transparência': '2. Features and Transparency',
+        '2.1. Uso Automatizado (Ecossistema Hybrid Truck)': '2.1. Automated Use (Hybrid Truck Ecosystem)',
+        'Os créditos BRT são projetados para utilização automatizada pelo ecossistema Hybrid Truck. A tecnologia permite que o uso ocorra sem a necessidade de ação manual do motorista em cada passagem ou serviço, eliminando filas e fricções operacionais.': 'BRT credits are designed for automated use by the Hybrid Truck ecosystem. The technology allows usage to occur without manual action by the driver at each passage or service, eliminating queues and operational friction.',
+        '2.2. Transparência On-Chain': '2.2. On-Chain Transparency',
+        'Toda a movimentação, emissão e utilização de créditos BRT são registradas de forma pública e imutável na blockchain Solana. Isso garante transparência total e permite auditoria independente por qualquer parte interessada a qualquer momento.': 'All movement, issuance and use of BRT credits are recorded publicly and immutably on the Solana blockchain. This ensures full transparency and allows independent auditing by any interested party at any time.',
+        '2.3. Expansão Progressiva': '2.3. Progressive Expansion',
+        'O ecossistema BRT está em constante evolução. Conforme a rede expande, o crédito Brutos passará a ser aceito progressivamente em outros serviços de mobilidade, incluindo:': 'The BRT ecosystem is constantly evolving. As the network expands, the Brutos credit will progressively be accepted in other mobility services, including:',
+        'Estacionamentos e pedágios;': 'Parking lots and tolls;',
+        'Abastecimento de combustível;': 'Fuel refueling;',
+        'Gestão de frotas e serviços em Cidades Inteligentes (Smart Cities).': 'Fleet management and services in Smart Cities.',
+        '3. Política de Privacidade e Cookies (LGPD)': '3. Privacy and Cookie Policy (LGPD)',
+        '3.1. Dados na Blockchain': '3.1. Data on the Blockchain',
+        'O usuário reconhece que o endereço de sua carteira e o histórico de uso dos créditos são dados públicos e permanentes na rede Solana, necessários para a segurança e auditoria do sistema.': 'The user acknowledges that their wallet address and credit usage history are public and permanent data on the Solana network, necessary for system security and auditing.',
+        '3.2. Tratamento de Dados Pessoais': '3.2. Personal Data Processing',
+        'Coletamos dados mínimos (como identificação de frota ou e-mail de suporte) estritamente para a prestação dos serviços de mobilidade e suporte técnico.': 'We collect minimal data (such as fleet identification or support email) strictly for providing mobility services and technical support.',
+        'Segurança:': 'Security:',
+        'Utilizamos criptografia e medidas técnicas rigorosas para proteger dados coletados fora da blockchain contra acessos não autorizados.': 'We use encryption and strict technical measures to protect data collected off the blockchain against unauthorized access.',
+        'Direitos:': 'Rights:',
+        'Em conformidade com a LGPD, o usuário pode solicitar acesso ou correção de seus dados pessoais armazenados em nossos servidores centrais.': 'In compliance with the LGPD, the user may request access to or correction of their personal data stored on our central servers.',
+        '4. Código de Conduta': '4. Code of Conduct',
+        'A comunidade BRT é mundial e real, focada na eficiência do setor de transporte e mobilidade. Espera-se que todos os membros, motoristas e parceiros mantenham um ambiente de respeito, colaboração e integridade, visando o crescimento sustentável do ecossistema do ativo BRT e a inovação na infraestrutura global.': 'The BRT community is global and real, focused on the efficiency of the transport and mobility sector. All members, drivers and partners are expected to maintain an environment of respect, collaboration and integrity, aiming at the sustainable growth of the BRT asset ecosystem and innovation in global infrastructure.',
+        'AVISO:': 'NOTICE:',
+        'Este documento é uma prévia informativa e pode ser revisado sem aviso prévio periodicamente de acordo com as atualizações tecnológicas do ecossistema Hybrid Truck e mudanças regulatórias.': 'This document is an informational preview and may be revised periodically without prior notice in line with technological updates to the Hybrid Truck ecosystem and regulatory changes.'
+      },
+      es: {
+        'BRUTOS — Mobilidade Digital de Alta Performance': 'BRUTOS — Movilidad Digital de Alto Rendimiento',
+        'Solução': 'Solución',
+        'Tecnologia': 'Tecnología',
+        'Acessar provedor parceiro': 'Acceder al proveedor asociado',
+        'Link copiado!': '¡Enlace copiado!',
+        'Não foi possível copiar o link': 'No se pudo copiar el enlace',
+        'Compartilhar esta página': 'Compartir esta página',
+        'Selecionar idioma': 'Seleccionar idioma',
+        'Fechar': 'Cerrar',
+        'Ecossistema Ativo — Mobilidade Digital': 'Ecosistema Activo — Movilidad Digital',
+        'O FUTURO': 'EL FUTURO',
+        'DO': 'DEL',
+        'PEDÁGIO': 'PEAJE',
+        'É': 'ES',
+        'Brutos é o crédito digital de mobilidade que elimina filas, reduz intermediários e conecta motoristas e frotas a uma infraestrutura de pagamento automático em tempo real.': 'Brutos es el crédito digital de movilidad que elimina filas, reduce intermediarios y conecta a conductores y flotas con una infraestructura de pago automático en tiempo real.',
+        'Como Funciona': 'Cómo Funciona',
+        'Tecnologia Base': 'Tecnología Base',
+        'Blockchain de alta velocidade': 'Blockchain de alta velocidad',
+        'Liquidação': 'Liquidación',
+        'Pagamento em tempo real': 'Pago en tiempo real',
+        'Ecossistema para negociação': 'Ecosistema para negociación',
+        'Infraestrutura blockchain Latam': 'Infraestructura blockchain Latam',
+        'Descer': 'Bajar',
+        'O': 'EL',
+        'PROBLEMA': 'PROBLEMA',
+        'Filas e Paradas Obrigatórias': 'Filas y Paradas Obligatorias',
+        'Cada parada em pedágio representa tempo perdido, combustível desperdiçado e custo operacional desnecessário para motoristas e frotas.': 'Cada parada en el peaje representa tiempo perdido, combustible desperdiciado y costo operativo innecesario para conductores y flotas.',
+        'Taxas de Intermediários': 'Comisiones de Intermediarios',
+        'Múltiplas camadas de processamento financeiro encarecem cada transação de mobilidade sem agregar valor ao usuário final.': 'Múltiples capas de procesamiento financiero encarecen cada transacción de movilidad sin agregar valor al usuario final.',
+        'Ecossistemas Desintegrados': 'Ecosistemas Desintegrados',
+        'Pedágios, estacionamentos e abastecimento operam em plataformas isoladas, sem comunicação ou eficiência entre elas.': 'Peajes, estacionamientos y abastecimiento operan en plataformas aisladas, sin comunicación ni eficiencia entre ellas.',
+        'Baixa Visibilidade Operacional': 'Baja Visibilidad Operativa',
+        'Gestores de frota não têm acesso a dados consolidados de mobilidade em tempo real para tomada de decisão.': 'Los gestores de flotas no tienen acceso a datos consolidados de movilidad en tiempo real para la toma de decisiones.',
+        'Custo Operacional Atual': 'Costo Operativo Actual',
+        'Tempo em filas / mês': 'Tiempo en filas / mes',
+        '+18 horas/veículo': '+18 horas/vehículo',
+        'Taxa de intermediários': 'Comisión de intermediarios',
+        '3.5% por transação': '3.5% por transacción',
+        'Processos manuais': 'Procesos manuales',
+        'Alto risco de erro': 'Alto riesgo de error',
+        'Integração de dados': 'Integración de datos',
+        'Quase zero': 'Casi cero',
+        'A': 'LA',
+        'SOLUÇÃO': 'SOLUCIÓN',
+        'Ative sua Verum Wallet': 'Activa tu Verum Wallet',
+        'Crie sua carteira não custodial — suas chaves, seu controle — e adicione créditos Brutos em segundos, direto pelo aplicativo.': 'Crea tu billetera no custodial — tus llaves, tu control — y agrega créditos Brutos en segundos, directo desde la aplicación.',
+        'Instale o Hybrid Truck': 'Instala el Hybrid Truck',
+        'O dispositivo inteligente é conectado ao veículo e realiza a identificação automática em pontos de cobrança.': 'El dispositivo inteligente se conecta al vehículo y realiza la identificación automática en los puntos de cobro.',
+        'Passe sem Parar': 'Pasa sin Parar',
+        'Ao cruzar o ponto de pedágio, o Hybrid Truck comunica o evento e o débito é executado automaticamente.': 'Al cruzar el punto de peaje, el Hybrid Truck comunica el evento y el débito se ejecuta automáticamente.',
+        'Confirmação On-Chain': 'Confirmación On-Chain',
+        'Cada transação é registrada na blockchain Solana, garantindo rastreabilidade total e auditabilidade permanente.': 'Cada transacción se registra en la blockchain Solana, garantizando trazabilidad total y auditabilidad permanente.',
+        'Tecnologia Central': 'Tecnología Central',
+        '"Um dispositivo inteligente que atua como ponte entre eventos do mundo real e a infraestrutura digital de liquidação."': '"Un dispositivo inteligente que actúa como puente entre eventos del mundo real y la infraestructura digital de liquidación."',
+        'Identificação': 'Identificación',
+        'Latência': 'Latencia',
+        'PASSA PELO PEDÁGIO.': 'PASA POR EL PEAJE.',
+        'SEM PARAR.': 'SIN PARAR.',
+        'SEM FILA.': 'SIN FILAS.',
+        'O ecossistema Brutos + Hybrid Truck identifica o veículo automaticamente e executa o débito em milissegundos. O motorista não precisa parar, abrir a janela ou acionar nenhum botão.': 'El ecosistema Brutos + Hybrid Truck identifica el vehículo automáticamente y ejecuta el débito en milisegundos. El conductor no necesita parar, abrir la ventana ni accionar ningún botón.',
+        'Tempo de liquidação': 'Tiempo de liquidación',
+        'Registro imutável': 'Registro inmutable',
+        'Infraestrutura': 'Infraestructura',
+        'Velocidade de processamento superior a 65.000 transações por segundo. Custo de transação inferior a $0.001 — viável para micropagamentos de mobilidade em escala.': 'Velocidad de procesamiento superior a 65.000 transacciones por segundo. Costo de transacción inferior a $0.001 — viable para micropagos de movilidad a escala.',
+        'Liquidação Híbrida': 'Liquidación Híbrida',
+        'Processamento off-chain para velocidade máxima na experiência do usuário, com confirmação posterior on-chain para imutabilidade e auditoria permanente.': 'Procesamiento off-chain para velocidad máxima en la experiencia del usuario, con confirmación posterior on-chain para inmutabilidad y auditoría permanente.',
+        'Integração nativa entre o dispositivo físico Hybrid Truck e a infraestrutura digital — eliminando a necessidade de intervenção humana em cada transação.': 'Integración nativa entre el dispositivo físico Hybrid Truck y la infraestructura digital — eliminando la necesidad de intervención humana en cada transacción.',
+        'Auditabilidade Total': 'Auditabilidad Total',
+        'Cada evento de passagem, débito e confirmação é registrado de forma permanente e verificável publicamente na blockchain, criando trilha de auditoria imutável.': 'Cada evento de paso, débito y confirmación se registra de forma permanente y verificable públicamente en la blockchain, creando una traza de auditoría inmutable.',
+        'Arquitetura Escalável': 'Arquitectura Escalable',
+        'Ecossistema projetado para crescer de centenas para milhões de transações diárias sem alteração de arquitetura, aproveitando a infraestrutura do ecossistema Verum.': 'Ecosistema diseñado para crecer de cientos a millones de transacciones diarias sin cambios de arquitectura, aprovechando la infraestructura del ecosistema Verum.',
+        'Equilíbrio Automático': 'Equilibrio Automático',
+        'Mecanismo programado de retirada de circulação proporcional ao volume de uso mantém a eficiência econômica do ecossistema de créditos ao longo do tempo.': 'Un mecanismo programado de retiro de circulación proporcional al volumen de uso mantiene la eficiencia económica del ecosistema de créditos a lo largo del tiempo.',
+        'Estrutura': 'Estructura',
+        'ECOSSISTEMA': 'ECOSISTEMA',
+        'Brutos não opera de forma isolada. É parte de uma infraestrutura completa que conecta hardware, carteira não custodial, blockchain e operação regional.': 'Brutos no opera de forma aislada. Es parte de una infraestructura completa que conecta hardware, billetera no custodial, blockchain y operación regional.',
+        'Infraestrutura Blockchain': 'Infraestructura Blockchain',
+        'Interface não custodial': 'Interfaz no custodial',
+        'Crédito de Mobilidade': 'Crédito de Movilidad',
+        'Operação Brasil': 'Operación Brasil',
+        'Operação e Liquidação': 'Operación y Liquidación',
+        'Conversão em moeda local para liquidação dos pedágios e serviços de mobilidade': 'Conversión en moneda local para la liquidación de peajes y servicios de movilidad',
+        'Sustentabilidade do Ecossistema': 'Sostenibilidad del Ecosistema',
+        'Reserva de liquidez destinada a sustentar o funcionamento contínuo do ecossistema': 'Reserva de liquidez destinada a sostener el funcionamiento continuo del ecosistema',
+        'Equilíbrio Econômico': 'Equilibrio Económico',
+        'Retirada programada de circulação proporcional ao volume de transações': 'Retiro programado de circulación proporcional al volumen de transacciones',
+        'Token de Utilidade Pura': 'Token de Utilidad Pura',
+        'Brutos é exclusivamente um crédito de uso para serviços de mobilidade. Não representa participação, direito financeiro ou instrumento de captação.': 'Brutos es exclusivamente un crédito de uso para servicios de movilidad. No representa participación, derecho financiero ni instrumento de captación.',
+        'Os créditos são utilizados automaticamente pelo ecossistema Hybrid Truck, sem ação manual do motorista em cada passagem. Sem filas, sem fricção.': 'Los créditos se utilizan automáticamente por el ecosistema Hybrid Truck, sin acción manual del conductor en cada paso. Sin filas, sin fricción.',
+        'Transparência On-Chain': 'Transparencia On-Chain',
+        'Toda movimentação de créditos é registrada na blockchain Solana, permitindo auditoria independente por qualquer parte interessada.': 'Todo movimiento de créditos se registra en la blockchain Solana, permitiendo auditoría independiente por cualquier parte interesada.',
+        'Expansão Progressiva': 'Expansión Progresiva',
+        'O mesmo crédito Brutos, conforme o ecossistema expande, passa a ser aceito em estacionamentos, combustível, frotas e cidades inteligentes.': 'El mismo crédito Brutos, conforme el ecosistema se expande, pasa a ser aceptado en estacionamientos, combustible, flotas y ciudades inteligentes.',
+        'SIMULE SUA': 'SIMULA TU',
+        'EFICIÊNCIA': 'EFICIENCIA',
+        'Simulador de Tempo Recuperado': 'Simulador de Tiempo Recuperado',
+        'Passagens por semana': 'Pasos por semana',
+        'passagens': 'pasos',
+        'Tempo médio em fila (min)': 'Tiempo promedio en fila (min)',
+        'Horas recuperadas / mês': 'Horas recuperadas / mes',
+        'Dias produtivos ganhos / ano': 'Días productivos ganados / año',
+        'Passagens automatizadas / ano': 'Pasos automatizados / año',
+        'Expansão': 'Expansión',
+        'CRESCIMENTO': 'CRECIMIENTO',
+        'Pedágios': 'Peajes',
+        'Pagamento automático em praças de pedágio': 'Pago automático en plazas de peaje',
+        'Em operação': 'En operación',
+        'Estacionamentos': 'Estacionamientos',
+        'Integração com redes de estacionamento': 'Integración con redes de estacionamiento',
+        'Em desenvolvimento': 'En desarrollo',
+        'Combustível': 'Combustible',
+        'Pagamento em postos de abastecimento': 'Pago en estaciones de servicio',
+        'Frotas': 'Flotas',
+        'Gestão centralizada de mobilidade corporativa': 'Gestión centralizada de movilidad corporativa',
+        'Planejado': 'Planificado',
+        'Integração com infraestrutura de cidades inteligentes': 'Integración con infraestructura de ciudades inteligentes',
+        'Visão': 'Visión',
+        'Credibilidade': 'Credibilidad',
+        'AS EMPRESAS': 'LAS EMPRESAS',
+        'ENVOLVIDAS': 'INVOLUCRADAS',
+        'Proprietária do Projeto': 'Propietaria del Proyecto',
+        'Empresa responsável pela estratégia, propriedade intelectual e direcionamento do ecossistema Brutos. Define os parâmetros de expansão, parcerias e integração com o mercado de mobilidade e logística.': 'Empresa responsable de la estrategia, propiedad intelectual y dirección del ecosistema Brutos. Define los parámetros de expansión, alianzas e integración con el mercado de movilidad y logística.',
+        'Infraestrutura Tecnológica': 'Infraestructura Tecnológica',
+        'Desenvolvedora da infraestrutura blockchain, da Verum Wallet — software de interface não custodial — e dos protocolos de liquidação on-chain. A custódia dos ativos permanece sempre com o usuário, detentor exclusivo de suas chaves privadas. Responsável pela auditabilidade e escalabilidade de toda a camada digital do ecossistema.': 'Desarrolladora de la infraestructura blockchain, de la Verum Wallet — software de interfaz no custodial — y de los protocolos de liquidación on-chain. La custodia de los activos permanece siempre con el usuario, titular exclusivo de sus llaves privadas. Responsable de la auditabilidad y escalabilidad de toda la capa digital del ecosistema.',
+        'Empresa brasileira parceira responsável pela operação, distribuição e suporte ao usuário no mercado nacional. Garante aderência à regulamentação local e capilaridade operacional em território brasileiro.': 'Empresa brasileña asociada responsable de la operación, distribución y soporte al usuario en el mercado nacional. Garantiza el cumplimiento de la regulación local y la capilaridad operativa en territorio brasileño.',
+        'Perguntas Frequentes': 'Preguntas Frecuentes',
+        'O Brutos é um investimento ou produto financeiro?': '¿Brutos es una inversión o un producto financiero?',
+        'Não. Brutos é exclusivamente um crédito de utilidade para pagamento de serviços de mobilidade. Não representa participação societária, instrumento financeiro, direito a rendimentos ou qualquer forma de investimento regulamentado.': 'No. Brutos es exclusivamente un crédito de utilidad para el pago de servicios de movilidad. No representa participación societaria, instrumento financiero, derecho a rendimientos ni ninguna forma de inversión regulada.',
+        'Como funciona o Hybrid Truck na prática?': '¿Cómo funciona el Hybrid Truck en la práctica?',
+        'O Hybrid Truck é um dispositivo instalado no veículo que realiza identificação automática ao passar por pontos de cobrança. Ao detectar o evento, e mediante autorização prévia concedida pelo usuário, o débito do crédito Brutos é assinado diretamente a partir da carteira não custodial do próprio motorista, sem necessidade de ação manual a cada passagem. As chaves privadas nunca saem do controle do usuário.': 'El Hybrid Truck es un dispositivo instalado en el vehículo que realiza identificación automática al pasar por puntos de cobro. Al detectar el evento, y mediante autorización previa otorgada por el usuario, el débito del crédito Brutos se firma directamente desde la billetera no custodial del propio conductor, sin necesidad de acción manual en cada paso. Las llaves privadas nunca salen del control del usuario.',
+        'Onde posso usar os créditos Brutos atualmente?': '¿Dónde puedo usar los créditos Brutos actualmente?',
+        'Na fase atual, os créditos Brutos são utilizados para pagamento de pedágios nos pontos integrados ao ecossistema. A expansão para estacionamentos, combustível e logística de frotas está em desenvolvimento conforme o roadmap do projeto.': 'En la fase actual, los créditos Brutos se utilizan para el pago de peajes en los puntos integrados al ecosistema. La expansión a estacionamientos, combustible y logística de flotas está en desarrollo conforme al roadmap del proyecto.',
+        'Como funciona a segurança das transações?': '¿Cómo funciona la seguridad de las transacciones?',
+        'A Verum fornece tecnologia avançada de segurança em software, e cada transação é registrada na blockchain Solana — uma das redes mais auditáveis do mundo, com imutabilidade permanente no registro on-chain. Como a carteira é não custodial, você é o único detentor das suas chaves privadas e o responsável pela guarda delas.': 'Verum ofrece tecnología avanzada de seguridad en software, y cada transacción se registra en la blockchain Solana — una de las redes más auditables del mundo, con inmutabilidad permanente en el registro on-chain. Como la billetera es no custodial, tú eres el único titular de tus llaves privadas y el responsable de su resguardo.',
+        'A Verum Wallet guarda minhas criptomoedas?': '¿Verum Wallet guarda mis criptomonedas?',
+        'Não. A Verum Wallet é um software de interface não custodial: ela apenas permite que você visualize seus ativos e assine transações na blockchain. As chaves privadas e a custódia dos créditos permanecem exclusivamente com o usuário. Nenhuma das empresas do ecossistema mantém, controla ou tem acesso aos seus fundos.': 'No. Verum Wallet es un software de interfaz no custodial: solo permite que visualices tus activos y firmes transacciones en la blockchain. Las llaves privadas y la custodia de los créditos permanecen exclusivamente con el usuario. Ninguna de las empresas del ecosistema mantiene, controla ni tiene acceso a tus fondos.',
+        'Motoristas autônomos podem usar o ecossistema?': '¿Los conductores autónomos pueden usar el ecosistema?',
+        'Sim. O ecossistema foi desenhado para atender tanto motoristas individuais quanto gestores de grandes frotas. A Verum Wallet e o Hybrid Truck funcionam de forma independente, com escalabilidade para múltiplos veículos na mesma conta.': 'Sí. El ecosistema fue diseñado para atender tanto a conductores individuales como a gestores de grandes flotas. Verum Wallet y Hybrid Truck funcionan de forma independiente, con escalabilidad para múltiples vehículos en la misma cuenta.',
+        'Qual é a responsabilidade de cada empresa no projeto?': '¿Cuál es la responsabilidad de cada empresa en el proyecto?',
+        'Hybrid Truck é a proprietária e definidora estratégica do projeto. Verum Crypto desenvolveu e mantém toda a infraestrutura blockchain e digital. A empresa Evolução conduz a operação no mercado brasileiro, incluindo relacionamento com usuários e parceiros locais.': 'Hybrid Truck es la propietaria y definidora estratégica del proyecto. Verum Crypto desarrolló y mantiene toda la infraestructura blockchain y digital. La empresa Evolução conduce la operación en el mercado brasileño, incluyendo la relación con usuarios y socios locales.',
+        'PRONTO PARA': '¿LISTO PARA',
+        'SEM PARAR?': 'SIN PARAR?',
+        'Termos de uso e Privacidade': 'Términos de uso y Privacidad',
+        'Brutos é um token utilitário de crédito de mobilidade. Este site não constitui oferta de valores mobiliários, promessa de rendimento ou instrumento de captação financeira regulamentada. A Verum Wallet é uma provedora de tecnologia (software de interface não custodial): você é o único detentor das suas chaves privadas, e a custódia dos ativos é de sua exclusiva responsabilidade. As operações de compra e venda de criptoativos são processadas exclusivamente por provedores parceiros independentes e regulados, responsáveis pelos respectivos procedimentos de KYC/AML e pela conversão entre moeda fiduciária e criptoativos; a Verum não processa, retém ou liquida moedas fiduciárias. A Verum Wallet não realiza recomendação de investimentos nem garante o desempenho de qualquer ativo digital — o mercado de criptoativos é altamente volátil. Operação conduzida pela Evolução no Brasil. © 2025 Hybrid Truck. Todos os direitos reservados.': 'Brutos es un token utilitario de crédito de movilidad. Este sitio no constituye oferta de valores, promesa de rendimiento ni instrumento de captación financiera regulada. Verum Wallet es una proveedora de tecnología (software de interfaz no custodial): tú eres el único titular de tus llaves privadas, y la custodia de los activos es de tu exclusiva responsabilidad. Las operaciones de compra y venta de criptoactivos son procesadas exclusivamente por proveedores asociados independientes y regulados, responsables de los respectivos procedimientos de KYC/AML y de la conversión entre moneda fiduciaria y criptoactivos; Verum no procesa, retiene ni liquida monedas fiduciarias. Verum Wallet no realiza recomendación de inversiones ni garantiza el desempeño de ningún activo digital — el mercado de criptoactivos es altamente volátil. Operación conducida por Evolução en Brasil. © 2025 Hybrid Truck. Todos los derechos reservados.',
+        'AVISO LEGAL, PRIVACIDADE E CÓDIGO DE CONDUTA – BRUTOS COIN (BRT)': 'AVISO LEGAL, PRIVACIDAD Y CÓDIGO DE CONDUCTA – BRUTOS COIN (BRT)',
+        'Este documento estabelece as diretrizes jurídicas e operacionais para o ativo Brutos Coin (BRT), integrado ao ecossistema de mobilidade e em conformidade com as leis de proteção de dados da América Latina (LGPD).': 'Este documento establece las directrices jurídicas y operativas para el activo Brutos Coin (BRT), integrado al ecosistema de movilidad y en conformidad con las leyes de protección de datos de América Latina (LGPD).',
+        'Última Atualização: Agosto de 2026': 'Última Actualización: Agosto de 2026',
+        '1. Aviso Legal e Natureza do Ativo (Disclaimer)': '1. Aviso Legal y Naturaleza del Activo (Disclaimer)',
+        '1.1. Token de Utilidade e Mobilidade': '1.1. Token de Utilidad y Movilidad',
+        'A Brutos Coin (BRT) é um ativo digital operando na rede blockchain Solana. O BRT é exclusivamente um crédito de uso para serviços de mobilidade. Não constitui, em nenhuma circunstância ou jurisdição, um valor mobiliário, contrato de investimento, instrumento de captação de recursos ou promessa de lucros. Sua posse não confere direitos de participação societária ou financeira no ecossistema.': 'Brutos Coin (BRT) es un activo digital que opera en la red blockchain Solana. El BRT es exclusivamente un crédito de uso para servicios de movilidad. No constituye, bajo ninguna circunstancia o jurisdicción, un valor, contrato de inversión, instrumento de captación de recursos ni promesa de ganancias. Su tenencia no confiere derechos de participación societaria o financiera en el ecosistema.',
+        '1.2. Alerta de Risco e Volatilidade': '1.2. Alerta de Riesgo y Volatilidad',
+        'O usuário declara estar ciente de que ativos digitais possuem volatilidade. A equipe do projeto não oferece garantias de valorização ou recompra obrigatória. O valor do BRT está intrinsecamente ligado à sua utilidade dentro do ecossistema de mobilidade.': 'El usuario declara estar consciente de que los activos digitales tienen volatilidad. El equipo del proyecto no ofrece garantías de valorización ni recompra obligatoria. El valor del BRT está intrínsecamente ligado a su utilidad dentro del ecosistema de movilidad.',
+        '1.3. Software e Custódia': '1.3. Software y Custodia',
+        'Para a gestão de seus créditos BRT, recomendamos o uso da Verum Wallet.': 'Para la gestión de tus créditos BRT, recomendamos el uso de Verum Wallet.',
+        'Nota Técnica:': 'Nota Técnica:',
+        'A Verum Wallet é um software não custodial que atua como interface técnica. O usuário é o único responsável pela segurança de suas chaves privadas. Não nos responsabilizamos por perda de acesso ou erros em transações manuais fora do ecossistema automatizado.': 'Verum Wallet es un software no custodial que actúa como interfaz técnica. El usuario es el único responsable de la seguridad de sus llaves privadas. No nos responsabilizamos por pérdida de acceso o errores en transacciones manuales fuera del ecosistema automatizado.',
+        '2. Funcionalidades e Transparência': '2. Funcionalidades y Transparencia',
+        '2.1. Uso Automatizado (Ecossistema Hybrid Truck)': '2.1. Uso Automatizado (Ecosistema Hybrid Truck)',
+        'Os créditos BRT são projetados para utilização automatizada pelo ecossistema Hybrid Truck. A tecnologia permite que o uso ocorra sem a necessidade de ação manual do motorista em cada passagem ou serviço, eliminando filas e fricções operacionais.': 'Los créditos BRT están diseñados para su utilización automatizada por el ecosistema Hybrid Truck. La tecnología permite que el uso ocurra sin necesidad de acción manual del conductor en cada paso o servicio, eliminando filas y fricciones operativas.',
+        '2.2. Transparência On-Chain': '2.2. Transparencia On-Chain',
+        'Toda a movimentação, emissão e utilização de créditos BRT são registradas de forma pública e imutável na blockchain Solana. Isso garante transparência total e permite auditoria independente por qualquer parte interessada a qualquer momento.': 'Todo el movimiento, emisión y utilización de créditos BRT se registra de forma pública e inmutable en la blockchain Solana. Esto garantiza transparencia total y permite auditoría independiente por cualquier parte interesada en cualquier momento.',
+        '2.3. Expansão Progressiva': '2.3. Expansión Progresiva',
+        'O ecossistema BRT está em constante evolução. Conforme a rede expande, o crédito Brutos passará a ser aceito progressivamente em outros serviços de mobilidade, incluindo:': 'El ecosistema BRT está en constante evolución. Conforme la red se expande, el crédito Brutos pasará a ser aceptado progresivamente en otros servicios de movilidad, incluyendo:',
+        'Estacionamentos e pedágios;': 'Estacionamientos y peajes;',
+        'Abastecimento de combustível;': 'Abastecimiento de combustible;',
+        'Gestão de frotas e serviços em Cidades Inteligentes (Smart Cities).': 'Gestión de flotas y servicios en Ciudades Inteligentes (Smart Cities).',
+        '3. Política de Privacidade e Cookies (LGPD)': '3. Política de Privacidad y Cookies (LGPD)',
+        '3.1. Dados na Blockchain': '3.1. Datos en la Blockchain',
+        'O usuário reconhece que o endereço de sua carteira e o histórico de uso dos créditos são dados públicos e permanentes na rede Solana, necessários para a segurança e auditoria do sistema.': 'El usuario reconoce que la dirección de su billetera y el historial de uso de los créditos son datos públicos y permanentes en la red Solana, necesarios para la seguridad y auditoría del sistema.',
+        '3.2. Tratamento de Dados Pessoais': '3.2. Tratamiento de Datos Personales',
+        'Coletamos dados mínimos (como identificação de frota ou e-mail de suporte) estritamente para a prestação dos serviços de mobilidade e suporte técnico.': 'Recolectamos datos mínimos (como identificación de flota o correo de soporte) estrictamente para la prestación de los servicios de movilidad y soporte técnico.',
+        'Segurança:': 'Seguridad:',
+        'Utilizamos criptografia e medidas técnicas rigorosas para proteger dados coletados fora da blockchain contra acessos não autorizados.': 'Utilizamos criptografía y medidas técnicas rigurosas para proteger los datos recolectados fuera de la blockchain contra accesos no autorizados.',
+        'Direitos:': 'Derechos:',
+        'Em conformidade com a LGPD, o usuário pode solicitar acesso ou correção de seus dados pessoais armazenados em nossos servidores centrais.': 'En conformidad con la LGPD, el usuario puede solicitar acceso o corrección de sus datos personales almacenados en nuestros servidores centrales.',
+        '4. Código de Conduta': '4. Código de Conducta',
+        'A comunidade BRT é mundial e real, focada na eficiência do setor de transporte e mobilidade. Espera-se que todos os membros, motoristas e parceiros mantenham um ambiente de respeito, colaboração e integridade, visando o crescimento sustentável do ecossistema do ativo BRT e a inovação na infraestrutura global.': 'La comunidad BRT es mundial y real, enfocada en la eficiencia del sector de transporte y movilidad. Se espera que todos los miembros, conductores y socios mantengan un ambiente de respeto, colaboración e integridad, buscando el crecimiento sostenible del ecosistema del activo BRT y la innovación en la infraestructura global.',
+        'AVISO:': 'AVISO:',
+        'Este documento é uma prévia informativa e pode ser revisado sem aviso prévio periodicamente de acordo com as atualizações tecnológicas do ecossistema Hybrid Truck e mudanças regulatórias.': 'Este documento es una vista previa informativa y puede ser revisado sin aviso previo periódicamente de acuerdo con las actualizaciones tecnológicas del ecosistema Hybrid Truck y cambios regulatorios.'
+      }
+    };
+
+    const HTML_LANG = { pt: 'pt-BR', en: 'en', es: 'es' };
+    const SKIP_TAGS = { SCRIPT: 1, STYLE: 1, NOSCRIPT: 1 };
+    const TITLE_PT = document.title;
+
+    // Snapshot dos nós de texto originais (em PT), feito uma única vez.
+    const nodes = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (SKIP_TAGS[n.parentNode.nodeName] || !n.nodeValue.trim())
+        ? NodeFilter.FILTER_REJECT
+        : NodeFilter.FILTER_ACCEPT
+    });
+    let n;
+    while ((n = walker.nextNode())) {
+      nodes.push({ node: n, raw: n.nodeValue, key: n.nodeValue.replace(/\s+/g, ' ').trim() });
+    }
+
+    // Atributos visíveis ao usuário (tooltip / leitor de tela).
+    const ATTRS = [
+      ['shareBtn', ['aria-label', 'title'], 'Compartilhar esta página'],
+      ['langBtn', ['aria-label', 'title'], 'Selecionar idioma'],
+      ['closeTerms', ['aria-label'], 'Fechar']
+    ];
+
+    let current = 'pt';
+
+    function translate(pt, lang) {
+      if (lang === 'pt') return pt;
+      const table = DICT[lang];
+      return (table && table[pt]) || pt;
+    }
+
+    // Exposto para textos gerados em runtime (ex.: toast de compartilhamento).
+    window.__t = (pt) => translate(pt, current);
+
+    function apply(lang) {
+      current = lang;
+
+      nodes.forEach(({ node, raw, key }) => {
+        const out = translate(key, lang);
+        if (out === key) {
+          node.nodeValue = raw;
+          return;
+        }
+        const lead = raw.match(/^\s*/)[0];
+        const trail = raw.match(/\s*$/)[0];
+        node.nodeValue = lead + out + trail;
+      });
+
+      ATTRS.forEach(([id, attrs, pt]) => {
+        const el = document.getElementById(id);
+        if (el) attrs.forEach((a) => el.setAttribute(a, translate(pt, lang)));
+      });
+
+      document.title = translate(TITLE_PT, lang);
+      document.documentElement.lang = HTML_LANG[lang] || 'pt-BR';
+
+      document.getElementById('langCode').textContent = lang.toUpperCase();
+      document.querySelectorAll('.lang-option').forEach((opt) => {
+        opt.classList.toggle('active', opt.dataset.lang === lang);
+      });
+
+      try { localStorage.setItem('brt-lang', lang); } catch (e) { /* modo privado */ }
+    }
+
+    // Dropdown
+    const navLang = document.getElementById('navLang');
+    const langBtn = document.getElementById('langBtn');
+
+    function closeMenu() {
+      navLang.classList.remove('open');
+      langBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navLang.classList.toggle('open');
+      langBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.querySelectorAll('.lang-option').forEach((opt) => {
+      opt.addEventListener('click', () => {
+        apply(opt.dataset.lang);
+        closeMenu();
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!navLang.contains(e.target)) closeMenu();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Idioma inicial: escolha salva > idioma do navegador > PT
+    let initial = 'pt';
+    try { initial = localStorage.getItem('brt-lang') || ''; } catch (e) { initial = ''; }
+    if (!initial) {
+      const nav = (navigator.language || 'pt').slice(0, 2).toLowerCase();
+      initial = nav === 'en' ? 'en' : nav === 'es' ? 'es' : 'pt';
+    }
+    apply(initial);
+  })();
+  </script>
+
+  <!-- PWA: service worker -->
+  <script>
+    (function () {
+      // Service worker exige contexto seguro. Em file:// o registro é ignorado.
+      // A instalação fica a cargo da UI nativa do navegador (sem beforeinstallprompt
+      // interceptado, o Chrome/Edge mostram o próprio ícone de instalar na barra).
+      if ('serviceWorker' in navigator && window.isSecureContext) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.warn('[PWA] Falha ao registrar o service worker:', err);
+          });
+        });
+      }
+    })();
+  </script>
+
+  <!-- VERCEL ANALYTICS -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 

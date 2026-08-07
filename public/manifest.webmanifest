@@ -1,0 +1,49 @@
+{
+  "name": "BRUTOS — Mobilidade Digital de Alta Performance",
+  "short_name": "BRUTOS",
+  "description": "Crédito digital de mobilidade para motoristas e frotas. Pagamentos automáticos em pedágios integrados ao ecossistema Hybrid Truck e Verum.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["business", "finance", "travel"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Como Funciona",
+      "url": "/#solucao"
+    },
+    {
+      "name": "Roadmap",
+      "url": "/#roadmap"
+    },
+    {
+      "name": "FAQ",
+      "url": "/#faq"
+    }
+  ]
+}

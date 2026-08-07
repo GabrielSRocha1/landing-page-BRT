@@ -1,0 +1,12 @@
+{
+  "name": "landing-page-brutos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page Brutos — by Hybrid Truck",
+  "scripts": {
+    "dev": "npx serve public"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.6.1"
+  }
+}
